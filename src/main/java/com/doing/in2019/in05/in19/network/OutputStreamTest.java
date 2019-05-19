@@ -8,7 +8,7 @@ import java.io.OutputStream;
  * 输出流，用于写入数据
  * 
  * 主要方法：
- * 		write(int b)（基本方法，抽象方法，接受0-255之间的整数作为参数，将对应的字节写入到输出流中）
+ * 		write(int b)（基本方法，抽象方法，接受0-255之间的整数作为参数，将对应的字节写入到输出流中。基本方法效率不高，下面有两个重载方法提高效率）
  * 		write(byte[] data)（）
  * 		write(byte[] data, int offset, int length)（）
  * 		flush()（写完数据后，刷新输出流，可以强迫缓冲的流发送数据）

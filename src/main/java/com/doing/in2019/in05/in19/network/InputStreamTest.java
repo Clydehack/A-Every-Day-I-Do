@@ -6,7 +6,7 @@ import java.io.InputStream;
  * 输入流，用于读取数据，InputStream类提供了将数据读取为原始字节的基本方法，无论读取那种数据源，都使用这6各主要方法。
  * 
  * 主要方法：
- * 		read()（基本方法，从输入流的源中读取1字节数据，作为一个0-255的int返回，流的结束标志是-1，阻塞后续代码执行!）
+ * 		read()（基本方法，从输入流的源中读取1字节数据，作为一个0-255的int返回，流的结束标志是-1，阻塞后续代码执行!基本方法效率不高，下面有两个重载方法提高效率）
  * 		read(byte[] input)（）
  * 		read(byte[] input, int offset, int length)（）
  * 		skip(long n)（）
@@ -27,6 +27,7 @@ public class InputStreamTest {
 	 * 例：
 	 * 		使用基本read()方法实现
 	 * 		从in中读取10字节数据，存储在byte数组input中，如果检测到流结束，就提前终止循环
+	 * 		虽然read()只读取1字节， 但会返回一个无符号（0~255）int，这样把结果存储到字节数组前必须进行类型转换，要将有符号字节（-128~127）转换为无符号字节。
 	 * 		从输入流的源中读取1字节数据(效率不高)
 	 */
 	public static void readBaseTest(InputStream in) throws Exception {
