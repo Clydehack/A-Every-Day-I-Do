@@ -1,1 +1,1 @@
-# A-Every-Day-I-Do
+# all_template
