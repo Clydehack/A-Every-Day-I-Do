@@ -36,6 +36,7 @@ public class OutputStreamTest {
 		int start = firstPrintableCharacter;
 		while(true) {
 			for(int i = start; i < start + numberOfCharactersPerLine; i++) {
+				// write()方法接受一个int作为参数，但实际上会写入一个无符号字节，Java没有无符号字节这个数据类型！
 				out.write(((i - firstPrintableCharacter) % numberOfPrintableCharacters)
 						+ firstPrintableCharacter);
 			}

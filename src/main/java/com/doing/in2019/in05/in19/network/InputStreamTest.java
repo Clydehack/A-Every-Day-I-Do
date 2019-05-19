@@ -27,7 +27,8 @@ public class InputStreamTest {
 	 * 例：
 	 * 		使用基本read()方法实现
 	 * 		从in中读取10字节数据，存储在byte数组input中，如果检测到流结束，就提前终止循环
-	 * 		虽然read()只读取1字节， 但会返回一个无符号（0~255）int，这样把结果存储到字节数组前必须进行类型转换，要将有符号字节（-128~127）转换为无符号字节。
+	 * 		// 虽然read()只读取1字节， 但会返回一个无符号（0~255）int，这样把结果存储到字节数组前必须进行类型转换，要将有符号字节（-128~127）转换为无符号字节。//
+	 * 		三个read方法都是在尝试填充数组，但是不一定会成功
 	 * 		从输入流的源中读取1字节数据(效率不高)
 	 */
 	public static void readBaseTest(InputStream in) throws Exception {
@@ -38,6 +39,23 @@ public class InputStreamTest {
 				break;
 			}
 			input[i] = (byte)b;
+			//int i = b >= 0 ? b :256 + b;// 将有符号字节转换为无符号字节
+		}
+	}
+	
+	/**
+	 * 从远程web服务读取数据时，可能会读取一半中途断开（断点续传）；
+	 * 对网络流来说，这种情况的处理技术尤为重要！！！
+	 */
+	public static void importantReadTest(InputStream in) throws Exception {
+		byte[] input = new byte[10];
+		for(int i = 0; i < input.length; i++) {
+			int b = in.read();
+			if(b == -1) {
+				break;
+			}
+			input[i] = (byte)b;
+			//int i = b >= 0 ? b :256 + b;// 将有符号字节转换为无符号字节
 		}
 	}
 }
