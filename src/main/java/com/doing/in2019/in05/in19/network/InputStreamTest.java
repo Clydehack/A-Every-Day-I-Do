@@ -48,14 +48,6 @@ public class InputStreamTest {
 	 * 对网络流来说，这种情况的处理技术尤为重要！！！
 	 */
 	public static void importantReadTest(InputStream in) throws Exception {
-		byte[] input = new byte[10];
-		for(int i = 0; i < input.length; i++) {
-			int b = in.read();
-			if(b == -1) {
-				break;
-			}
-			input[i] = (byte)b;
-			//int i = b >= 0 ? b :256 + b;// 将有符号字节转换为无符号字节
-		}
+		
 	}
 }
