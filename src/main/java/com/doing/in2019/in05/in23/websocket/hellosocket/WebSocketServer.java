@@ -19,7 +19,7 @@ public class WebSocketServer {
 			ServerBootstrap server = new ServerBootstrap();
 			server.group(faterGroup, childGroup)			// serverBootstrap.group() 			方法定义了两个线程组的功能
 					.channel(NioServerSocketChannel.class)	// serverBootstrap.channel()		设置双向通道类型为nio
-					.childHandler(new WebSocketServerInitialzer());
+					.childHandler(new WebSocketServerInitialzer());	// 配置自定义的子处理器
 			
 			/* 3.启动server，设置启动端口号8088，启动方式为同步 */
 			ChannelFuture channelFuture = server.bind(8088).sync();
@@ -30,8 +30,5 @@ public class WebSocketServer {
 			faterGroup.shutdownGracefully();
 			childGroup.shutdownGracefully();
 		}
-		
-		
 	}
-	
 }

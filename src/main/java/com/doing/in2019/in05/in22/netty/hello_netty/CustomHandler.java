@@ -15,7 +15,7 @@ import io.netty.handler.codec.http.HttpVersion;
 import io.netty.util.CharsetUtil;
 
 /**
- * 自定义的助手类(处理类)
+ * 自定义的助手类(处理类，主要用于读取用户消息，并对用户消息进行处理，处理完毕后再发给相应的客户端)
  * 		SimpleChannelInboundHandler对于请求来说，相当于入站，入境
  */
 public class CustomHandler extends SimpleChannelInboundHandler<HttpObject> {

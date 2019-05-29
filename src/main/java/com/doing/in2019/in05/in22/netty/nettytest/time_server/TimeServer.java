@@ -1,4 +1,4 @@
-package com.doing.in2019.in05.in22.netty.nettytest;
+package com.doing.in2019.in05.in22.netty.nettytest.time_server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,7 +8,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.http.HttpServerCodec;
 
 public class TimeServer {
 	
@@ -43,8 +42,16 @@ public class TimeServer {
 
 		@Override
 		protected void initChannel(SocketChannel arg0) throws Exception {
-			// 新添加了HttpServerCodec支持，再试试看
-			arg0.pipeline().addLast("HttpServerCodec", new HttpServerCodec()).addLast(new TimeServerHandler());
+			arg0.pipeline().addLast(new TimeServerHandler());
+			/*
+			 * 代码:
+			 * 		arg0.pipeline().addLast("HttpServerCodec", new HttpServerCodec()).addLast(new TimeServerHandler());
+			 * 访问:
+			 * 		http://localhost:8080/msg=sdfsff
+			 * 打印:
+			 * 		15:38:43.377 [nioEventLoopGroup-3-3] DEBUG io.netty.channel.DefaultChannelPipeline - xxx
+			 */
+			
 			/*
 			 * 代码:
 			 * 		arg0.pipeline().addLast(new TimeServerHandler());

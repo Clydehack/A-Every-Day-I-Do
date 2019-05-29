@@ -1,4 +1,4 @@
-package com.doing.in2019.in05.in22.netty.nettytest;
+package com.doing.in2019.in05.in22.netty.nettytest.time_server;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
