@@ -22,7 +22,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<!-- 指定项目的编码和JDK版本  -->
+	<!-- 指定项目的编码和各种依赖版本  -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

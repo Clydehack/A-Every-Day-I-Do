@@ -5,4 +5,6 @@ package com.doing.in2019.in05.in18.list;
  */
 public class LinkedList {
 
+//	public Node head;
+//	public Node current;
 }

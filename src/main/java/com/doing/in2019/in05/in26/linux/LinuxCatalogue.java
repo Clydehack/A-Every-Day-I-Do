@@ -17,7 +17,7 @@ public class LinuxCatalogue {
 	 * 		/home				普通用户的主目录，或FTP站点目录（一般存放在/home目录下）
 	 * 		/lib				存放共享函数库（library）
 	 * 		/mnt				文件系统挂载点，（光盘的挂载点可以是/mnt/cdrom）（软盘的挂载点可以是/mnt/floppy）（ZIP驱动器为/mnt/zip）
-	 * 		/opt				通常提供给较大型的第三方应用程序使用，避免将文件分散至整个文件系统
+	 * 		/opt				通常提供给较大型的第三方应用程序使用，装到/opt目录下的程序，它所有的数据、库文件等等都是放在同个目录下面。删除的时候，只需删除/opt/xxx目录即可，非常简单。
 	 * 		/proc				保存了目前系统内核和程序执行的相关信息，（/proc/interrupts保存了当前分配的中断请求端口号）（/proc/cpuinfo保存了当前处理器信息）
 	 * 		/root				根目录主目录
 	 * 		/sbin				System Binary，存放系统启动时所需执行的系统程序
