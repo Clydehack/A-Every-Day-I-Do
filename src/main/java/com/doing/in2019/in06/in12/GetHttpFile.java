@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class GetHttpFile {
 
@@ -28,5 +30,12 @@ public class GetHttpFile {
 		in.close();
 		
 		System.out.println(sb.toString());
+		
+		
+		long current = System.currentTimeMillis();
+		long billMs = current-1*24*3600*1000;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		System.out.println(sdf.format(new Date(current)));
+		System.out.println(sdf.format(new Date(billMs)));
 	}
 }
