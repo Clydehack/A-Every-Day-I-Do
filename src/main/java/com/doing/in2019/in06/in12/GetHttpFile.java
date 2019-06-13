@@ -8,6 +8,9 @@ import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 获取其他站点的http静态文件
+ */
 public class GetHttpFile {
 
 	public static void main(String[] args) throws Exception {
