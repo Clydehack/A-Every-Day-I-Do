@@ -34,7 +34,7 @@ public class GetHttpFile {
 		
 		System.out.println(sb.toString());
 		
-		
+		/* 拿到今天和前一天日期字符串 */
 		long current = System.currentTimeMillis();
 		long billMs = current-1*24*3600*1000;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
