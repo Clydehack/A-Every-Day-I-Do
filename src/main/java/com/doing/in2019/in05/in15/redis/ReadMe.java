@@ -32,11 +32,16 @@ public class ReadMe {
 	 * 			1.消息队列
 	 * 			2.文章列表
 	 * 		集合
-	 * 			1。标签，用户的兴趣点，还可以找到有共同兴趣点的人。
+	 * 			1.标签，用户的兴趣点集合，或者标签的用户集合，还可以通过查询标签的用户集合找到有共同兴趣点的人，这里要用到事务。
+	 * 				（标签：{用户1，用户2...}  用户：{标签1，标签2...}）
+	 * 			2.对账，先对两个账单集合a、b求交集c，然后分别用账单和c求差集，求得的差集d、f存在异常账单表。然后标注对账日志表本次对账情况。
+	 * 				（a：账单1：{id，amont，time...}	b：账单2：{id，amont，time...}
+	 * 					c：交集：{账单1，账单2，交集c}	d：差集：{账单1，交集c，差集d}	f：差集：{账单2，交集c，差集f}）
 	 * 		有序集合
 	 * 			1.排行榜系统
+	 * 			2.添加用户时加了排序字段，所以性能比集合(无序)要低
 	 * 
-	 * wget http://download.redis.io/releases/redis-5.0.5.tar.gz		下载到当前目录
+	 * wget http://download.redis.io/releases/redis-5.0.5.tar.gz		下载到当前目录(因为是在home目录，所以撞到了home里。。 有空改到opt目录里去)
 	 * tar xzf redis-5.0.5.tar.gz										解压缩
 	 * ln -s redis-5.0.5 redis											建立redis目录的软连接
 	 * cd redis-5.0.5													进入目录
@@ -44,9 +49,10 @@ public class ReadMe {
 	 * make install														安装到usr/local/bin/下，可以在任意目录下执行redis命令
 	 * 
 	 * redis-cli -v														查看版本
-	 * redis-server								生产环境中使用配置文件启动redis
+	 * redis-server														直接启动-自己玩时随便
+	 * redis-server	redis.config										生产环境-使用配置文件启动redis
 	 * 
 	 * 
-	 * 项目上线前，先关缓存层测试
+	 * 注意---项目上线前，一定要先关缓存层测试
 	 */
 }

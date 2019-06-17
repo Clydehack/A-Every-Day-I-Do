@@ -15,7 +15,7 @@ public class GetHttpFile {
 
 	public static void main(String[] args) throws Exception {
 		// 拉取http上的账单文件
-		URL url = new URL("http://116.228.64.55:9093/IMEServer/docroot/attachments/merchantCheck/2019/06/100009001000_20190610_1_allinpay.txt");
+		URL url = new URL("https://yun.allinpay.com/IMEServer/docroot/attachments/detailFile/2019/06/100009000590_orderDetail_20190610.csv");
 		URLConnection connection = url.openConnection();	//openConnection()
 		InputStream in = connection.getInputStream();		//getInputStream()	获取输入流
 		InputStreamReader isr = new InputStreamReader(in);	//
@@ -33,12 +33,12 @@ public class GetHttpFile {
 		in.close();
 		
 		System.out.println(sb.toString());
-		
-		/* 拿到今天和前一天日期字符串 */
+/*		
+		 拿到今天和前一天日期字符串 
 		long current = System.currentTimeMillis();
 		long billMs = current-1*24*3600*1000;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		System.out.println(sdf.format(new Date(current)));
-		System.out.println(sdf.format(new Date(billMs)));
+		System.out.println(sdf.format(new Date(billMs)));*/
 	}
 }
