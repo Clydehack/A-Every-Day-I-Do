@@ -3,7 +3,7 @@ package com.doing.in2019.in06.in18.SnowFlake;
 public class ReadMe {
 
 	/**
-	 * 雪花算法 -- SnowFlake
+	 * 雪花算法 -- SnowFlake -- By Twitter
 	 * 
 	 * 		SnowFlake算法是Twitter设计的一个可以在分布式系统中生成唯一的ID的算法，
 	 * 		它可以满足Twitter每秒上万条消息ID分配的请求，这些消息ID是唯一的且有大致的递增顺序。
