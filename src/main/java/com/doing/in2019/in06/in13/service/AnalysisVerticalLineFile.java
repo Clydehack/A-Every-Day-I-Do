@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDate;
 
 /**
  * 解析使用竖线分隔的文件（竖线分隔符又称制表符分隔符）
@@ -19,8 +20,9 @@ import java.net.URLConnection;
 public class AnalysisVerticalLineFile {
 
 	public static void main(String[] args) throws Exception {
-		String str = simpleReadFile();
-		analysisFile(str);
+		/*String str = simpleReadFile();
+		analysisFile(str);*/
+		System.out.println(LocalDate.now().minusDays(+1).toString());
 	}
 
 	/**
