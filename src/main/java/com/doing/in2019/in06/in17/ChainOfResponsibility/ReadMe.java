@@ -33,5 +33,16 @@ public class ReadMe {
 	 * 			何不让handler自己负责把控制往后发，这样control只要联系领头的handler就可以。这样每个handler可以自行决定是否要往后传递。
 	 * 			而且还可以根据需要替换context的属性。
 	 * 			总的来说感觉“责任链”还是要优于原始流程;
+	 * 
+	 * 注意---对于易于抽象的大段逻辑，使用责任链是非常好的。（网友看法：如果一个复杂if-else结构所涉及的条件是业务需求带来的，我倾向于把它做成责任链，因为这样一个复杂的分支结构说明这里有一个比较重要的业务决策点）
+	 * 
+	 * 
+	 * 参考资料：
+	 * |						url										|									关键字							|
+	 * 		https://raychase.iteye.com/blog/1814187							责任链、优化示例、优化讨论、Polling
+	 * 		https://www.cnblogs.com/eric-shao/p/10115577.html				8种优化if地狱的方式、优化示例
+	 * 		https://blog.csdn.net/j16421881/article/details/79967948		4种优化if地狱的方式、优化示例
+	 * 		https://blog.csdn.net/qq_35440678/article/details/77939999		写if-else不外乎两种场景：异常逻辑处理和不同状态处理、异常逻辑处理、状态处理
+	 * 		https://bbs.csdn.net/topics/330133422							正则、循环、七嘴八舌 😀
 	 */
 }
