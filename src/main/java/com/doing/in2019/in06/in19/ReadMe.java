@@ -13,11 +13,22 @@ public class ReadMe {
 	 * 		artifactId - payment
 	 * 			银行卡
 	 * 			基础
+	 * 				常量
+	 * 				短信发送
+	 * 				tools
 	 * 			book.代理
 	 * 			计算
 	 * 			链
 	 * 			demo
 	 * 			金融
+	 * 				承兑汇票
+	 * 				记账 - 会计
+	 * 				第三方支付API
+	 * 				汇票账户
+	 * 				现金账户
+	 * 				专用户
+	 * 				公共方法
+	 * 				汇票金市场买卖方
 	 * 			framework
 	 * 			jspdemo
 	 * 			location
@@ -27,6 +38,11 @@ public class ReadMe {
 	 * 			收据
 	 * 			关系-业务圈
 	 * 			system
+	 * 				代理邀请码
+	 * 				附件
+	 * 				银行信息
+	 * 				系统 - 组织信息
+	 * 				随机方法
 	 * 			传输.联系人-转账联系人
 	 * 			user
 	 * 			
