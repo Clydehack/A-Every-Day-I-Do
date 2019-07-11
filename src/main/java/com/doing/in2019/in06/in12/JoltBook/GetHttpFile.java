@@ -1,4 +1,4 @@
-package com.doing.in2019.in06.in12;
+package com.doing.in2019.in06.in12.JoltBook;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package com.doing.in2019.in06.in20;
+package com.doing.in2019.in06.in20.EA;
 
 public class ReadMe {
 
