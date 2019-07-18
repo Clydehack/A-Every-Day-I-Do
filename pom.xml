@@ -66,11 +66,6 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.47</version>
 		</dependency>
-		<dependency>
-			<groupId>com.allinpay</groupId>
-			<artifactId>allinpay-sdk</artifactId>
-			<version>1.0.2</version>
-		</dependency>
 		<!-- 测试nexus私服 -->
 		
 	</dependencies>
