@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.uzone.payment.chain.manage.dao.ChaChainPOMapper">
+	<resultMap id="BaseResultMap"
+		type="com.uzone.payment.chain.manage.entity.ChaChainPO">
+		<id column="id" jdbcType="CHAR" property="id" />
+		<result column="chain_status" jdbcType="VARCHAR"
+			property="chainStatus" />
+		<result column="chain_no" jdbcType="VARCHAR" property="chainNo" />
+		<result column="chain_type" jdbcType="CHAR"
+			property="chainType" />
+		<result column="confirmed_end_time" jdbcType="TIMESTAMP"
+			property="confirmedEndTime" />
+		<result column="confirmed_finish_time" jdbcType="TIMESTAMP"
+			property="confirmedFinishTime" />
+		<result column="pay_end_time" jdbcType="TIMESTAMP"
+			property="payEndTime" />
+		<result column="pay_time" jdbcType="TIMESTAMP"
+			property="payTime" />
+		<result column="complete_time" jdbcType="TIMESTAMP"
+			property="completeTime" />
+		<result column="complete_end_time" jdbcType="TIMESTAMP"
+			property="completeEndTime" />
+		<result column="cash_flag" jdbcType="BIT" property="cashFlag" />
+		<result column="may_head_income_amt" jdbcType="BIGINT"
+			property="mayHeadIncomeAmt" />
+		<result column="may_all_income_amt" jdbcType="BIGINT"
+			property="mayAllIncomeAmt" />
+		<result column="may_head1_own_amt" jdbcType="BIGINT"
+			property="mayHead1OwnAmt" />
+		<result column="real_head_income_amt" jdbcType="BIGINT"
+			property="realHeadIncomeAmt" />
+		<result column="real_head1_income_amt" jdbcType="BIGINT"
+			property="realHead1IncomeAmt" />
+		<result column="real_all_income_amt" jdbcType="BIGINT"
+			property="realAllIncomeAmt" />
+		<result column="real_head1_own_amt" jdbcType="BIGINT"
+			property="realHead1OwnAmt" />
+		<result column="remarks" jdbcType="VARCHAR" property="remarks" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+			property="updateTime" />
+		<result column="versions" jdbcType="INTEGER"
+			property="versions" />
+	</resultMap>
+
+	<resultMap id="ResultMapVO"
+		type="com.uzone.payment.chain.manage.entity.ChaChainVO">
+		<id column="id" jdbcType="CHAR" property="id" />
+		<result column="chain_status" jdbcType="VARCHAR"
+			property="chainStatus" />
+		<result column="chain_no" jdbcType="VARCHAR" property="chainNo" />
+		<result column="chain_type" jdbcType="CHAR"
+			property="chainType" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="confirmed_end_time" jdbcType="TIMESTAMP"
+			property="confirmedEndTime" />
+		<result column="cash_flag" jdbcType="BIT" property="cashFlag" />
+
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, chain_status, chain_no, chain_type, confirmed_end_time,
+		confirmed_finish_time,
+		pay_end_time, pay_time, complete_time, complete_end_time, cash_flag,
+		may_head_income_amt,
+		may_all_income_amt, may_head1_own_amt, real_head_income_amt, real_head1_income_amt,
+		real_all_income_amt, real_head1_own_amt, remarks, create_time,
+		update_time, versions
+	</sql>
+
+	<!-- Mybatis：XML中 if else判断使用choose、when、otherwise，示例: -->
+	<select id="countById" parameterType="java.lang.Long" resultType="java.lang.Integer">
+		SELECT 
+			count(*) 
+		  FROM 
+			test
+		WHERE 
+			state = ‘ACTIVE’
+	  		<if test="title != null">
+	    		AND title like #{title}
+	  		</if>
+			<choose>
+				<when test="title != null">
+					AND title like #{title}
+				</when>
+				<when test="author != null and author.name != null">
+					AND author_name like #{author.name}
+				</when>
+				<otherwise>
+					AND featured = 1
+				</otherwise>
+			</choose>
+	</select>
+
+	<select id="getChainVOSByChaChainQueryVO"
+		parameterType="com.uzone.payment.chain.manage.entity.ChaChainQueryVO"
+		resultMap="ResultMapVO">
+		select
+		<include refid="Base_Column_List" />
+		from cha_chain
+		where 1 = 1
+		<if test="chainId != null and chainId != ''">
+			AND id = #{chainId,jdbcType=CHAR}
+		</if>
+		<if test="chainNo != null and chainNo != ''">
+			AND chain_no = #{chainNo,jdbcType=VARCHAR}
+		</if>
+		<if test="chainType != null and chainType != ''">
+			AND chain_type = #{chainType,jdbcType=CHAR}
+		</if>
+		<if test="chainStatus != null and chainStatus != ''">
+			AND chain_status IN (
+			<foreach collection="chainStatus.split(',')" item="item"
+				index="index" separator=",">
+				#{item}
+			</foreach>
+			)
+		</if>
+		<if test="startPublishTime != null and startPublishTime != ''">
+			AND create_time >= #{startPublishTime,jdbcType=CHAR}
+		</if>
+		<if test="endPublishTime != null and endPublishTime != ''">
+			AND create_time &lt;= #{endPublishTime,jdbcType=CHAR}
+		</if>
+	</select>
+
+	<select id="getChaChainPOByChainNo"
+		parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from cha_chain
+		where chain_no = #{chainNo,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from cha_chain
+		where id = #{id,jdbcType=CHAR}
+	</select>
+
+	<select id="queryTimeOutChainId" resultType="java.lang.String">
+		select
+		id
+		from cha_chain
+		where chain_status = 'REDUCTION_CONFIRM' 	<!-- 待链中确认 -->
+		and NOW() > confirmed_end_time			<!-- 当前时间大于确认截止时间 -->
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from cha_chain
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.uzone.payment.chain.manage.entity.ChaChainPO">
+		insert into cha_chain (id, chain_status, chain_no,
+		chain_type, confirmed_end_time, confirmed_finish_time,
+		pay_end_time, pay_time, complete_time,
+		complete_end_time, cash_flag, may_head_income_amt,
+		may_all_income_amt, may_head1_own_amt, real_head_income_amt,
+		real_head1_income_amt, real_all_income_amt, real_head1_own_amt,
+		remarks, create_time, update_time,
+		versions)
+		values (#{id,jdbcType=CHAR}, #{chainStatus,jdbcType=VARCHAR},
+		#{chainNo,jdbcType=VARCHAR},
+		#{chainType,jdbcType=CHAR}, #{confirmedEndTime,jdbcType=TIMESTAMP},
+		#{confirmedFinishTime,jdbcType=TIMESTAMP},
+		#{payEndTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP},
+		#{completeTime,jdbcType=TIMESTAMP},
+		#{completeEndTime,jdbcType=TIMESTAMP}, #{cashFlag,jdbcType=BIT},
+		#{mayHeadIncomeAmt,jdbcType=BIGINT},
+		#{mayAllIncomeAmt,jdbcType=BIGINT}, #{mayHead1OwnAmt,jdbcType=BIGINT},
+		#{realHeadIncomeAmt,jdbcType=BIGINT},
+		#{realHead1IncomeAmt,jdbcType=BIGINT},
+		#{realAllIncomeAmt,jdbcType=BIGINT},
+		#{realHead1OwnAmt,jdbcType=BIGINT},
+		#{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+		#{versions,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.uzone.payment.chain.manage.entity.ChaChainPO">
+		insert into cha_chain
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="chainStatus != null">
+				chain_status,
+			</if>
+			<if test="chainNo != null">
+				chain_no,
+			</if>
+			<if test="chainType != null">
+				chain_type,
+			</if>
+			<if test="confirmedEndTime != null">
+				confirmed_end_time,
+			</if>
+			<if test="confirmedFinishTime != null">
+				confirmed_finish_time,
+			</if>
+			<if test="payEndTime != null">
+				pay_end_time,
+			</if>
+			<if test="payTime != null">
+				pay_time,
+			</if>
+			<if test="completeTime != null">
+				complete_time,
+			</if>
+			<if test="completeEndTime != null">
+				complete_end_time,
+			</if>
+			<if test="cashFlag != null">
+				cash_flag,
+			</if>
+			<if test="mayHeadIncomeAmt != null">
+				may_head_income_amt,
+			</if>
+			<if test="mayAllIncomeAmt != null">
+				may_all_income_amt,
+			</if>
+			<if test="mayHead1OwnAmt != null">
+				may_head1_own_amt,
+			</if>
+			<if test="realHeadIncomeAmt != null">
+				real_head_income_amt,
+			</if>
+			<if test="realHead1IncomeAmt != null">
+				real_head1_income_amt,
+			</if>
+			<if test="realAllIncomeAmt != null">
+				real_all_income_amt,
+			</if>
+			<if test="realHead1OwnAmt != null">
+				real_head1_own_amt,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="versions != null">
+				versions,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="chainStatus != null">
+				#{chainStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="chainNo != null">
+				#{chainNo,jdbcType=VARCHAR},
+			</if>
+			<if test="chainType != null">
+				#{chainType,jdbcType=CHAR},
+			</if>
+			<if test="confirmedEndTime != null">
+				#{confirmedEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="confirmedFinishTime != null">
+				#{confirmedFinishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="payEndTime != null">
+				#{payEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="payTime != null">
+				#{payTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="completeTime != null">
+				#{completeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="completeEndTime != null">
+				#{completeEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cashFlag != null">
+				#{cashFlag,jdbcType=BIT},
+			</if>
+			<if test="mayHeadIncomeAmt != null">
+				#{mayHeadIncomeAmt,jdbcType=BIGINT},
+			</if>
+			<if test="mayAllIncomeAmt != null">
+				#{mayAllIncomeAmt,jdbcType=BIGINT},
+			</if>
+			<if test="mayHead1OwnAmt != null">
+				#{mayHead1OwnAmt,jdbcType=BIGINT},
+			</if>
+			<if test="realHeadIncomeAmt != null">
+				#{realHeadIncomeAmt,jdbcType=BIGINT},
+			</if>
+			<if test="realHead1IncomeAmt != null">
+				#{realHead1IncomeAmt,jdbcType=BIGINT},
+			</if>
+			<if test="realAllIncomeAmt != null">
+				#{realAllIncomeAmt,jdbcType=BIGINT},
+			</if>
+			<if test="realHead1OwnAmt != null">
+				#{realHead1OwnAmt,jdbcType=BIGINT},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="versions != null">
+				#{versions,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.uzone.payment.chain.manage.entity.ChaChainPO">
+		update cha_chain
+		<set>
+			<if test="chainStatus != null">
+				chain_status = #{chainStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="chainNo != null">
+				chain_no = #{chainNo,jdbcType=VARCHAR},
+			</if>
+			<if test="chainType != null">
+				chain_type = #{chainType,jdbcType=CHAR},
+			</if>
+			<if test="confirmedEndTime != null">
+				confirmed_end_time = #{confirmedEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="confirmedFinishTime != null">
+				confirmed_finish_time = #{confirmedFinishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="payEndTime != null">
+				pay_end_time = #{payEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="payTime != null">
+				pay_time = #{payTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="completeTime != null">
+				complete_time = #{completeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="completeEndTime != null">
+				complete_end_time = #{completeEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cashFlag != null">
+				cash_flag = #{cashFlag,jdbcType=BIT},
+			</if>
+			<if test="mayHeadIncomeAmt != null">
+				may_head_income_amt = #{mayHeadIncomeAmt,jdbcType=BIGINT},
+			</if>
+			<if test="mayAllIncomeAmt != null">
+				may_all_income_amt = #{mayAllIncomeAmt,jdbcType=BIGINT},
+			</if>
+			<if test="mayHead1OwnAmt != null">
+				may_head1_own_amt = #{mayHead1OwnAmt,jdbcType=BIGINT},
+			</if>
+			<if test="realHeadIncomeAmt != null">
+				real_head_income_amt = #{realHeadIncomeAmt,jdbcType=BIGINT},
+			</if>
+			<if test="realHead1IncomeAmt != null">
+				real_head1_income_amt = #{realHead1IncomeAmt,jdbcType=BIGINT},
+			</if>
+			<if test="realAllIncomeAmt != null">
+				real_all_income_amt = #{realAllIncomeAmt,jdbcType=BIGINT},
+			</if>
+			<if test="realHead1OwnAmt != null">
+				real_head1_own_amt = #{realHead1OwnAmt,jdbcType=BIGINT},
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="versions != null">
+				versions = #{versions,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.uzone.payment.chain.manage.entity.ChaChainPO">
+		update cha_chain
+		set chain_status = #{chainStatus,jdbcType=VARCHAR},
+		chain_no = #{chainNo,jdbcType=VARCHAR},
+		chain_type = #{chainType,jdbcType=CHAR},
+		confirmed_end_time = #{confirmedEndTime,jdbcType=TIMESTAMP},
+		confirmed_finish_time = #{confirmedFinishTime,jdbcType=TIMESTAMP},
+		pay_end_time = #{payEndTime,jdbcType=TIMESTAMP},
+		pay_time = #{payTime,jdbcType=TIMESTAMP},
+		complete_time = #{completeTime,jdbcType=TIMESTAMP},
+		complete_end_time = #{completeEndTime,jdbcType=TIMESTAMP},
+		cash_flag = #{cashFlag,jdbcType=BIT},
+		may_head_income_amt = #{mayHeadIncomeAmt,jdbcType=BIGINT},
+		may_all_income_amt = #{mayAllIncomeAmt,jdbcType=BIGINT},
+		may_head1_own_amt = #{mayHead1OwnAmt,jdbcType=BIGINT},
+		real_head_income_amt = #{realHeadIncomeAmt,jdbcType=BIGINT},
+		real_head1_income_amt = #{realHead1IncomeAmt,jdbcType=BIGINT},
+		real_all_income_amt = #{realAllIncomeAmt,jdbcType=BIGINT},
+		real_head1_own_amt = #{realHead1OwnAmt,jdbcType=BIGINT},
+		remarks = #{remarks,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		versions = #{versions,jdbcType=INTEGER}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+</mapper>
