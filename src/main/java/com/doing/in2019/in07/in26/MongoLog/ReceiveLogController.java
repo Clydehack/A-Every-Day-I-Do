@@ -23,7 +23,7 @@ public class ReceiveLogController {
 	
 	@RequestMapping("queryLog")
 	public String queryLog(HttpServletRequest request, HttpServletResponse response){
-		String userId = request.getParameter("userId");
+		//String userId = request.getParameter("userId");
 		// 聚合用户日志，每天一个块，
 		//mongoTemplate.mapReduce(domainType);
 		return "ok";

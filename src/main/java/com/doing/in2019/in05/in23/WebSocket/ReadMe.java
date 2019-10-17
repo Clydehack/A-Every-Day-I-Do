@@ -10,7 +10,7 @@ public class ReadMe {
 	 * 		Nginx + FastDFS			（高性能分布式图片服务器）
 	 * 		普通接口使用Restful
 	 * 		聊天收发使用WebSocket
-	 * 		
+	 * 
 	 * 	传统APP开发最基本要两个移动端、一个后端、一个运维，So考虑使用跨平台实现
 	 * 
 	 * 	实时通信的技术

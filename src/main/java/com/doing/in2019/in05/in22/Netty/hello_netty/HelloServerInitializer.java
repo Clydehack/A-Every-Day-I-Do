@@ -16,10 +16,10 @@ public class HelloServerInitializer extends ChannelInitializer<SocketChannel> {
 		ChannelPipeline pipeline = channel.pipeline();
 		// 通过管道添加handler，pipeline.add()把handler添加到哪个位置，一般是last
 		// HttpServerCodec是netty提供的助手类，可以理解为拦截器
-		// 当请求到服务端，我们需要做解码，响应到客户端做编码
+		// 当请求到服务端，我们需要做解码，响应到客户端做编码，就是netty提供的编解码器
 		pipeline.addLast("HttpServerCodec", new HttpServerCodec());
 		
-		// 添加自定义的助手类，返回hello netty字符串
+		// 添加自定义的助手类，返回hello netty字符串，自己实现功能使用
 		pipeline.addLast("CustomHandler", new CustomHandler());
 	}
 

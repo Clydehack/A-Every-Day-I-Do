@@ -61,11 +61,11 @@
 		<!-- 测试nexus私服 公司小电脑卡到爆，吐血 
 		还算成功，只是报了个错Errors running builder 'Maven Project Builder' on project 'A-Every-Day-I-Do'.
 		Could not calculate build plan: Plugin org.apache.maven.plugins:maven-resources-plugin:2.7 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.47</version>
-		</dependency>
+		</dependency> -->
 		<!-- 测试nexus私服 -->
 		
 		<!-- mongodb -->

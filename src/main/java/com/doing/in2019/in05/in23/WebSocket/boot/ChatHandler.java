@@ -1,4 +1,4 @@
-package com.doing.in2019.in05.in23.WebSocket.hellosocket;
+package com.doing.in2019.in05.in23.WebSocket.boot;
 
 import java.time.LocalDateTime;
 
