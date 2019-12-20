@@ -3,8 +3,16 @@ package com.doing.in2019.in12.in20.Company;
 public class ReadMe {
 
 	/**
+	 * 所谓管理：
+	 * 
+	 * 		规范:
+	 * 		制度：
+	 * 		方法：
+	 * 		人情:
+	 * 
+	 * 
 	 * 公司架构：
-	 * 		
+	 * 
 	 * 		产品（方案策划组）：
 	 * 			产品经理若干
 	 * 			UI设计师若干
