@@ -7,7 +7,7 @@ public class ReadMe {
 	 * 		
 	 *		groupId：groupId分为几个字段，例如com.piggy，前面的com叫【域】，后面的是你自己起的域名。
 	 *		artifactId：artifactId一般是项目名或者模块名。
-	 * 		包名根目录=groupId+artifactId。
+	 * 		包名根目录 = groupId + artifactId。
 	 *
 	 */
 }
