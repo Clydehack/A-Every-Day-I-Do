@@ -92,7 +92,12 @@ public class Reptile {
 		try {
 			URL url = new URL(imageUrl);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setConnectTimeout(1500);
+			connection.setReadTimeout(1500);
+			// 普通
 			connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+			// 解决403
+//			connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36)");
 			InputStream is = connection.getInputStream();
 			// 创建文件
 			File file = new File(filePath + fileName);
@@ -126,16 +131,101 @@ public class Reptile {
 			this.filePath = filePath;
 		}
 	}
+	
 	public static List<DownElement> getElement() {
 		List<DownElement> list = new ArrayList<Reptile.DownElement>();
 		DownElement de = new DownElement();
-		de.setFilePath("E:\\存这里");
-		de.setUrl("https://xxx.com/xxx/");
+		de.setFilePath("E:\\就是阿朱啊\\XiuRen No.1597");
+		de.setUrl("https://nudegirls4u.com/xiuren-no-1597/");
 		if(null != de) {
 			list.add(de);
 		}
+		
+		DownElement de1 = new DownElement();
+		de1.setFilePath("E:\\就是阿朱啊\\XiuRen No.1607");
+		de1.setUrl("https://nudegirls4u.com/xiuren-no-1607/");
+		if(null != de1) {
+			list.add(de1);
+		}
+		
+		DownElement de2 = new DownElement();
+		de2.setFilePath("E:\\就是阿朱啊\\XiuRen No.1624");
+		de2.setUrl("https://nudegirls4u.com/xiuren-no-1624/");
+		if(null != de2) {
+			list.add(de2);
+		}
+
+		DownElement de3 = new DownElement();
+		de3.setFilePath("E:\\就是阿朱啊\\XiuRen No.1640");
+		de3.setUrl("https://nudegirls4u.com/xiuren-no-1640/");
+		if(null != de3) {
+			list.add(de3);
+		}
+		
+		DownElement de4 = new DownElement();
+		de4.setFilePath("E:\\就是阿朱啊\\XiuRen No.1668");
+		de4.setUrl("https://nudegirls4u.com/xiuren-no-1668/");
+		if(null != de4) {
+			list.add(de4);
+		}
+		
+		DownElement de5 = new DownElement();
+		de5.setFilePath("E:\\就是阿朱啊\\XiuRen No.1690");
+		de5.setUrl("https://nudegirls4u.com/xiuren-no-1690/");
+		if(null != de5) {
+			list.add(de5);
+		}
+		
+		DownElement de6 = new DownElement();
+		de6.setFilePath("E:\\就是阿朱啊\\XiuRen No.1723");
+		de6.setUrl("https://nudegirls4u.com/xiuren-no-1723/");
+		if(null != de6) {
+			list.add(de6);
+		}
+		
+		DownElement de7 = new DownElement();
+		de7.setFilePath("E:\\就是阿朱啊\\XiuRen No.1739");
+		de7.setUrl("https://nudegirls4u.com/xiuren-no-1739/");
+		if(null != de7) {
+			list.add(de7);
+		}
+		
+		DownElement de8 = new DownElement();
+		de8.setFilePath("E:\\就是阿朱啊\\XiuRen No.1750");
+		de8.setUrl("https://nudegirls4u.com/xiuren-no-1750/");
+		if(null != de8) {
+			list.add(de8);
+		}
+		
+		DownElement de9 = new DownElement();
+		de9.setFilePath("E:\\就是阿朱啊\\XiuRen No.1768");
+		de9.setUrl("https://nudegirls4u.com/xiuren-no-1768/");
+		if(null != de9) {
+			list.add(de9);
+		}
+		
+		DownElement de10 = new DownElement();
+		de10.setFilePath("E:\\就是阿朱啊\\XiuRen No.1781");
+		de10.setUrl("https://nudegirls4u.com/xiuren-no-1781/");
+		if(null != de10) {
+			list.add(de10);
+		}
+
+		DownElement de11 = new DownElement();
+		de11.setFilePath("E:\\就是阿朱啊\\XiuRen No.1592");
+		de11.setUrl("https://nudegirls4u.com/xiuren-no-1592/");
+		if(null != de11) {
+			list.add(de11);
+		}
+		DownElement de12 = new DownElement();
+		de12.setFilePath("E:\\就是阿朱啊\\XiuRen No.1573");
+		de12.setUrl("https://nudegirls4u.com/xiuren-no-1573/");
+		if(null != de12) {
+			list.add(de12);
+		}
 		return list;
 	}
+	
 	public static void downFile(String url, String filePath, String encoding) {
 		String htmlResource = getHtmlResourceByUrl(url, encoding);
 		// System.out.println(htmlResource);
@@ -143,8 +233,8 @@ public class Reptile {
 		Document document = Jsoup.parse(htmlResource);
 		// 获取所有图片的地址
 //        Elements elements = document.getElementsByTag("img");
-//        Elements elements = document.getElementsByTag("a");
-		Elements elements = document.getElementsByClass("rgg-simplelightbox size-medium rgg-img");
+        Elements elements = document.getElementsByTag("a");
+//		Elements elements = document.getElementsByClass("rgg-simplelightbox size-medium rgg-img");
 
 		for (Element element : elements) {
 //        	String imgSrc = element.attr("src");
@@ -152,7 +242,7 @@ public class Reptile {
 //        	if (!"".equals(imgSrc) && (imgSrc.startsWith("http://") || imgSrc.startsWith("https://"))) {
 //        		// 判断imgSrc是否为空且是否以"http://"开头
 //        		System.out.println("正在下载的图片的地址：" + imgSrc);
-//        		downImages(filePath, imgSrc);
+//        		downImages(filePath, "http://hosted.ladyboysfuckedbareback.com/galleries/nanny3_blacksheerbareback" + imgSrc);
 //        	}
 			if (!"".equals(imgSrc) && (imgSrc.startsWith("http://") || imgSrc.startsWith("https://"))) {
 				// 判断imgSrc是否为空且是否以"http://"开头
@@ -172,5 +262,22 @@ public class Reptile {
 				downFile(de.getUrl(), de.getFilePath(), encoding);
 			}
 		}
+		
+		// 直接下载
+//		int i = 1;
+//		for (; i<43 ; i++) {
+//			String j = "";
+//			if(i < 10) {
+//				j = "0" + i;
+//			} else {
+//				j = String.valueOf(i);
+//			}
+//			String imgSrc = "https://imgpc.iimzt.com/2019/05/08a" + j + ".jpg";
+//			if (!"".equals(imgSrc) && (imgSrc.startsWith("http://") || imgSrc.startsWith("https://"))) {
+//				// 判断imgSrc是否为空且是否以"http://"开头
+//				System.out.println("正在下载的图片的地址：" + imgSrc);
+//				downImages("E:\\faceimgg\\周妍希\\巨乳美腿大屁股 性感女神周妍希酒店私拍写真", imgSrc);
+//			}
+//		}
 	}
 }
